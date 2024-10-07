@@ -1,0 +1,49 @@
+
+import { Kayttaja, validateKayttaja} from '../Models/kayttaja.js';
+
+
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+// Rekisteröidy
+
+export const Rekisteroidy = async (req, res) => {
+  const { nimi, sahkoposti, salasana } = req.body;
+
+  // Validointi tarkistus 
+  const { error } = validateKayttaja(req.body);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+  }
+
+  let kayttaja = await Kayttaja.findOne({ sahkoposti });
+  if (kayttaja) {
+    return res.status(400).send('Käyttäjä on jo olemassa. Kirjaudu sisään.');
+  }
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashPass = await bcrypt.hash(salasana, salt);
+
+    const newKayttaja = await Kayttaja.create({ nimi, sahkoposti, salasana: hashPass });
+
+    res.json({ message: 'User Registered Successfully!', newKayttaja });
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error', error: err });
+  }
+};
+
+
+// Kirjaudu sisään
+export const kirjaudu = async (req, res) => {
+  const { sahkoposti, salasana } = req.body;
+
+
+  const kayttaja = await Kayttaja.findOne({ sahkoposti });
+
+  if (!kayttaja) {
+    return res.status(400).send('Väärä sähköposti tai salasana.');
+  }
+
+
+};
