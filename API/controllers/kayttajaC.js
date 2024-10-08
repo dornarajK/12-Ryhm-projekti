@@ -1,12 +1,8 @@
-
-import { Kayttaja, validateKayttaja} from '../Models/kayttaja.js';
-
-
+import { Kayttaja, validateKayttaja } from '../Models/kayttaja.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 // Rekisteröidy
-
 export const Rekisteroidy = async (req, res) => {
   const { nimi, sahkoposti, salasana } = req.body;
 
@@ -31,19 +27,37 @@ export const Rekisteroidy = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Server Error', error: err });
   }
-};
-
+}; //Rekisteroidy loppu
 
 // Kirjaudu sisään
 export const kirjaudu = async (req, res) => {
   const { sahkoposti, salasana } = req.body;
 
+  try {
+    const kayttaja = await Kayttaja.findOne({ sahkoposti });
 
-  const kayttaja = await Kayttaja.findOne({ sahkoposti });
+    if (!kayttaja) {
+      return res.status(400).send('Väärä sähköposti tai salasana.');
+    }
+    const validPass = await bcrypt.compare(salasana, kayttaja.salasana);
+    if (!validPass) {
+      return res.status(401).json({ message: 'salasana Virhe' });
+    }
+    const token = jwt.sign({ kayttajaId: kayttaja._id }, process.env.JWT_SECRET || 'SecretKey', {
+      expiresIn: "9d"
+    });
 
-  if (!kayttaja) {
-    return res.status(400).send('Väärä sähköposti tai salasana.');
+    res.json({ message: `Tervetulosa ${kayttaja.nimi}`, token })
+
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ message: 'Server Error', error: error.message });
   }
 
+};//kirjaudu loppu
 
-};
+
+//käyttäjä portfolio
+export const portfolio = async (req, res) => {
+  res.json({ kayttaja:  req.kayttaja});
+}//portfolio loppu

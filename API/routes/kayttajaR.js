@@ -1,8 +1,8 @@
 import express from "express";
 
 
-import {Rekisteroidy} from '../controllers/kayttajaC.js'
-
+import {Rekisteroidy, kirjaudu, portfolio} from '../controllers/kayttajaC.js'
+import {authorizeUser} from '../middleware/authorization.js'
 
 const route = express.Router();
 
@@ -10,7 +10,9 @@ const route = express.Router();
 route.post('/Rekisteroidy', Rekisteroidy)
 
 // kirjautuminen sisään 
-// route.get('/kirjaudu', kirjaudu)
+route.post('/kirjaudu',kirjaudu)
 
+// käyttäjä portfolio
+route.get('/portfolio',authorizeUser,portfolio)
 
 export default route;
