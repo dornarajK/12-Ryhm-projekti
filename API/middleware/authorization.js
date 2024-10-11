@@ -9,6 +9,7 @@ export const authorizeUser = async (req, res, next) => {
     if (!token) return res.status(401).json({ message: 'Kirjaudu ensin sisään.' });
 
     const decode = jwt.verify(token, process.env.JWT_SECRET || "SecretKey");
+
     const id = decode.kayttajaId;
 
     let user = await Kayttaja.findById(id);

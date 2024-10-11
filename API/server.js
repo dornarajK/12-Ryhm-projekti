@@ -1,12 +1,8 @@
 import express from 'express';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import Kayttajaroute from './routes/kayttajaR.js';
-
-//* yhdistämine mongoose 
-mongoose.connect("mongodb+srv://devrajkharal05:Fa0wHVoABeO7AUYV@cluster0.zhoea.mongodb.net/", {
-  dbName: "ReMarket"
-}).then(() =>console.log("Mangodb on Yhdistetty...!"))
-.catch((err) => console.log(err.message))
+import Tuoteroute from './routes/tuoteR.js';
+import { connectDB } from './Models/dbYhdistys.js';
 
 
 const app = express();
@@ -14,10 +10,17 @@ const port = 3000;
 const host = 'localhost';
 app.use(express.json());
 
+
 app.use('/api', Kayttajaroute);
+app.use('/api', Tuoteroute)
 
 
+connectDB().then(()=>{
 
-app.listen(port, host, () => console.log(`${host}:${port} kuuntelee...`));
+  app.listen(port, host, () => console.log(`${host}:${port} kuuntelee...`));
+
+}).catch((err)=>{
+  console.log("Failed to connect to MongoDB:", err.message)
+})
 
 
