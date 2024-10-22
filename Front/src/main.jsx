@@ -1,6 +1,6 @@
 
 import { createRoot } from 'react-dom/client'
-import App from './components/App.jsx'
+import App from './App.jsx'
 
 import App_State from './context/App_State';
 
