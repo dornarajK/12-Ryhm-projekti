@@ -1,27 +1,49 @@
-import React, { useEffect,} from 'react';
+import React, { useEffect, } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-
 import { AppContext } from './App_Context';
-url = 'http://localhost:3000/api/'
+
+
 
 const App_State = ({ children }) => {
-  const [kaikkiTuote, setKaikkiTuote] = useState([]);
-  
+
+  url = 'http://localhost:3000/api/'
+
   useEffect(() => {
-    url.then((res) => setKaikkiTuote(res.data))
-      .catch((err) => console.error("Error fetching products:", err));
+    const fetchTuote = async () => {
+      const api = await axios.get(`${url}/`,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true
+        });
+    }
+    fetchTuote()
+
   }, []);
 
+  //*Tunnuts
+  const Rekisteroidy = async () => {
+    const api = await axios.post(`${url}/Rekisteroidy`,
+      {
 
-  
+      },
+      {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: true
+      });
+    return api
+  }
 
-  let tuote = kaikkiTuote.map((item) => {
-    return <li key={item.id}>{item.tuoteNimi}</li>;
-  });
 
   return (
-    <AppContext.Provider value="">
+    <AppContext.Provider value={
+      Rekisteroidy
+    }>
+
       {children}
       {/* <p>{tuote}</p> */}
     </AppContext.Provider>
