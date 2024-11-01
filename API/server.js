@@ -5,12 +5,12 @@ import Kayttajaroute from './routes/kayttajaR.js';
 import Tuoteroute from './routes/tuoteR.js';
 import { connectDB } from './Models/dbYhdistys.js';
 
-
 const app = express();
 const port = 3000;
 const host = 'localhost';
+
+app.use(cors()); 
 app.use(express.json());
-app.use(cors());
 
 app.use('/api', Kayttajaroute);
 app.use('/api', Tuoteroute)
