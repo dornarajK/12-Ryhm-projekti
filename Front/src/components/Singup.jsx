@@ -91,7 +91,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import App_Context from 'App_Context';
+// import App_Context from 'App_Context';
 
 const Signup = () => {
     const {Rekisteroidy} =  useContext('App_Context');

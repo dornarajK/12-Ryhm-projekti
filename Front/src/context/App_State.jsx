@@ -6,13 +6,13 @@ import { AppContext } from './App_Context';
 
 
 const App_State = ({ children }) => {
-<<<<<<< HEAD
+
 
   url = 'http://localhost:3000/api/Rekisteroidy'
-=======
+
   let url = 'http://localhost:3000/api';
   const [tuotteet, setTuotteet] = useState([])
->>>>>>> main
+
 
   useEffect(() => {
     const fetchTuote = async () => {
@@ -99,17 +99,17 @@ const App_State = ({ children }) => {
       return api
   }
 
-
+//kommentti
 
 
 
 
   return (
-<<<<<<< HEAD
-    <AppContext.Provider value="">
-=======
+
+   
+
     <AppContext.Provider value={""}>
->>>>>>> main
+
 
       {children}
       
