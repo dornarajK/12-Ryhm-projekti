@@ -7,7 +7,7 @@ import { AppContext } from './App_Context';
 
 const App_State = ({ children }) => {
 
-  url = 'http://localhost:3000/api/'
+  url = 'http://localhost:3000/api/Rekisteroidy'
 
   useEffect(() => {
     const fetchTuote = async () => {
@@ -40,9 +40,7 @@ const App_State = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={
-      Rekisteroidy
-    }>
+    <AppContext.Provider value="">
 
       {children}
       {/* <p>{tuote}</p> */}
