@@ -7,9 +7,6 @@ import { AppContext } from './App_Context';
 
 const App_State = ({ children }) => {
 
-
-  url = 'http://localhost:3000/api/Rekisteroidy'
-
   let url = 'http://localhost:3000/api';
   const [tuotteet, setTuotteet] = useState([])
 
@@ -75,7 +72,7 @@ const App_State = ({ children }) => {
       tuoteNimi,
       hinta,
       tiedot,
-      kuva
+      kuva  
     },
       {
         headers: {
@@ -105,9 +102,6 @@ const App_State = ({ children }) => {
 
 
   return (
-
-    <AppContext.Provider value="">
-
     <AppContext.Provider value={""}>
 
 
