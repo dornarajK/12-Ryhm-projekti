@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
 function Login() {    
 
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate('')
+
 
     // const handleSubmit = (e) => {
     //     e.preventDefault()
@@ -25,6 +26,11 @@ function Login() {
     //     .catch(err => console.log(err))
     // }
 
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+    }
 
 return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">

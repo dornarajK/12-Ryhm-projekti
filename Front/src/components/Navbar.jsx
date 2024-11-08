@@ -2,6 +2,7 @@ import React from 'react'
 import { BiSolidDoorOpen } from "react-icons/bi";
 import Style from '../Style/Navbar.module.css'
 import { Link } from 'react-router-dom'
+
 function Navbar() {
   return (
 
@@ -19,11 +20,20 @@ function Navbar() {
                 <a className="nav-link" href="#">Portfolio</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Tuote</a>
+                <Link to="/teeTuote" className='text-decoration-none nav-link'>Tee tuote</Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">?</a>
               </li>
             </ul>
-            <button className="btn btn-outline-success me-2" type="button">Kirjaudu Sisään</button>
-            <button className="btn btn-outline-success me-2" type="button">Rekisteroidy</button>
+            <button className="btn btn-outline-success me-2" type="button">
+            <Link to="/kirjaudu" className='text-decoration-none'>Kirjaudu Sisään</Link>
+              
+              
+            </button>
+            <button className="btn btn-outline-success me-2 " type="button">
+            <Link to="/Rekisteroidy" className='text-decoration-none'>Rekisteroidy</Link>
+              </button>
             <button className="btn btn-outline-danger" type="button"> Ulos <BiSolidDoorOpen /></button>
 
 
