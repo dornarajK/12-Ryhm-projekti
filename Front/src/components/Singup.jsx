@@ -100,22 +100,22 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post("http://localhost:3000/api/Rekisteroidy", { name, email, password })
-            .then(result => {
-                console.log(result);
-                navigate("/login");
-            })
-            .catch(err => console.log(err));
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     axios.post("http://localhost:3000/api/Rekisteroidy", { name, email, password })
+    //         .then(result => {
+    //             console.log(result);
+    //             navigate("/login");
+    //         })
+    //         .catch(err => console.log(err));
+    // }
 
     return (
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
             <div className="bg-white p-3 rounded w-25">
                 <h2><center>Sign Up</center></h2>
 
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div className="mb-3">
                         <label htmlFor="name">
                             <strong>Name</strong>

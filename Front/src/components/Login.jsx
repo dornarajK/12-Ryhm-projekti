@@ -9,28 +9,28 @@ function Login() {
     const [password, setPassword] = useState()
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post("http://localhost:3000/api/", { email, password })
-        .then(result => {
-            console.log(result)
-            if(result.data === "Success"){
-                navigate("/home")
-            }else{
-                navigate("/register")
-                alert("You are not registered to this service")
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     axios.post("http://localhost:3000/api/", { email, password })
+    //     .then(result => {
+    //         console.log(result)
+    //         if(result.data === "Success"){
+    //             navigate("/home")
+    //         }else{
+    //             navigate("/register")
+    //             alert("You are not registered to this service")
 
-            }
-        })
-        .catch(err => console.log(err))
-    }
+    //         }
+    //     })
+    //     .catch(err => console.log(err))
+    // }
 
 
 return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
         <div className="bg-white p-3 rounded w-25">
             <h2><center>Login</center></h2>
-            <form onSubmit={handleSubmit}>
+            <form>
                 
                 <div className="mb-3">
                     <label htmlFor="email">
