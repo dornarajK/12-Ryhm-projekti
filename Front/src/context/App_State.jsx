@@ -102,7 +102,7 @@ const App_State = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={""}>
+    <AppContext.Provider value={Rekisteroidy}>
 
 
       {children}

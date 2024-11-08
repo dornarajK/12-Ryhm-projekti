@@ -9,7 +9,7 @@ const Etusivu = () => {
 
   return (
     <div>
-      Etusivu
+      <h3>Tämä on Etusivu</h3>
     </div>
   )
 }
