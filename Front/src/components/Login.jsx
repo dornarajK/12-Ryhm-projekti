@@ -11,7 +11,6 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-       
     }
 return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
