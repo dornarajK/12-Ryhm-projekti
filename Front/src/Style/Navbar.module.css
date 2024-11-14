@@ -1,4 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Protest+Guerrilla&display=swap');
+
 .logo{
   font-size: 1.7rem;
   padding-right: 19px;
+  border: none;
+  direction: unset;
+}
+.tes{
+  font-size: 1.7rem;
+  padding-right: 19px;
+  font-family: "Protest Guerrilla";
 }

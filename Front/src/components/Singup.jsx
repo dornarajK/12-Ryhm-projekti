@@ -31,7 +31,7 @@ return (
                         <strong>Nimi</strong>
                     </label>
                     <input type="text" 
-                    placeholder='Syötä nimi' 
+                    placeholder=' nimi' 
                     autoComplete='off' 
                     name='email' 
                     className='form-control rounded-0'

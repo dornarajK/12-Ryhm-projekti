@@ -1,0 +1,25 @@
+.imgediv{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+.imge{
+  width: 35%;
+  height: 70vh;
+}
+.text{
+  text-align: center;
+
+}
+.ptext{
+  text-align: center;
+ 
+
+}
+.divp{
+
+margin-top: 19px;
+padding: 0px 59vh;
+
+
+}
