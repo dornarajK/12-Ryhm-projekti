@@ -2,25 +2,21 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-// import { AppContext } from '../context/App_Context';
 
 const Signup = () => {
-    // const { Rekisteroidy } = useContext(App_Context);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-       
-    }
+  
+    
     return (
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
             <div className="bg-white p-3 rounded w-25">
                 <h2><center>Sign Up</center></h2>
 
-                <form onSubmit={handleSubmit}>
+                <form >
                     <div className="mb-3">
                         <label htmlFor="name">
                             <strong>Name</strong>

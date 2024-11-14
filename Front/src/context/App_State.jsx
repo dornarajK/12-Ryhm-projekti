@@ -96,11 +96,6 @@ const App_State = ({ children }) => {
       return api
   }
 
-
-
-
-
-
   return (
     <AppContext.Provider value={Rekisteroidy}>
 
