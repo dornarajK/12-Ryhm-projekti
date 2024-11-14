@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
-function Signup() {    
+function Rekisteroidy() {    
 
     const [nimi, setNimi] = useState()
     const [sahkoposti, setSahkoposti] = useState()
@@ -77,7 +77,7 @@ return (
 );
 }
 
-export default Signup;
+export default Rekisteroidy;
 
 
 

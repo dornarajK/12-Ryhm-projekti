@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Signup from './components/Singup'
+import Rekisteroidy from './components/Rekisteroidy'
 import Login from './components/Login'
 import Etusivu from './components/Etusivu'
 import MyyTuote from './components/TeeTuote'
@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <div className='bodydiv'>
         <Routes>
-          <Route path="/Rekisteroidy" element={<Signup />} />
+          <Route path="/Rekisteroidy" element={<Rekisteroidy />} />
           <Route path="/kirjaudu" element={<Login />} />
           <Route path="/" element={<Etusivu />} />
           <Route path="/teeTuote" element={<MyyTuote />} />
