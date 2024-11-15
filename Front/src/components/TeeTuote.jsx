@@ -18,7 +18,7 @@ function MyyTuote() {
 					<input type='text' placeholder='Kuva' name='kuva' />
 				</div>
 				<div>
-					<button type='submit'>Julkaise tuote</button>
+					<button type='submit'>Julkaise tuote!</button>
 				</div>
 			</form>
 		</>
