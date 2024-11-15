@@ -9,14 +9,14 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-  
+
     
     return (
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
             <div className="bg-white p-3 rounded w-25">
                 <h2><center>Sign Up</center></h2>
 
-                <form >
+                <form>
                     <div className="mb-3">
                         <label htmlFor="name">
                             <strong>Name</strong>
