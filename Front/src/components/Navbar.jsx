@@ -1,6 +1,6 @@
 import React from 'react'
-import { BiSolidDoorOpen } from "react-icons/bi";
-import Style from '../Style/Navbar.module.css'
+import { BiSolidDoorOpen } from 'react-icons/bi'
+import '../Style/Navbar.module.css'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
