@@ -10,21 +10,6 @@ import Footer from './components/Footer'
 import About from './components/About'
 import './App.css';
 function App() {
-<<<<<<< HEAD
-	return (
-		<>
-			<Navbar />
-			<div>
-				<Routes>
-					<Route path='/Rekisteroidy' element={<Signup />} />
-					<Route path='/kirjaudu' element={<Login />} />
-					<Route path='/' element={<Etusivu />} />
-					<Route path='/teeTuote' element={<MyyTuote />} />
-				</Routes>
-			</div>
-		</>
-	)
-=======
 
   return (
     <>
@@ -43,7 +28,6 @@ function App() {
 
     </> 
   )
->>>>>>> main
 }
 
 export default App

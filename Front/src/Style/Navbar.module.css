@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-.logo {
-	font-size: 1.7rem;
-	padding-right: 19px;
-}
-
-.header {
-	background-color: #6c63ff;
-=======
 
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Protest+Guerrilla&display=swap');
 
@@ -15,7 +6,6 @@
   padding-right: 19px;
   border: none;
   direction: unset;
->>>>>>> main
 }
 .tes{
   font-size: 1.7rem;
