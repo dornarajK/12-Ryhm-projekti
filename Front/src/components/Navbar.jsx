@@ -4,45 +4,77 @@ import '../Style/Navbar.module.css'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
-  return (
-    <div>
-      <nav className="navbar navbar-expand-lg border-bottom border-body" style={{ backgroundColor: '#6c63ff'}} data-bs-theme="dark">
-        <div className="container-fluid">
-          <Link to="/" className={`navbar-brand  ${Style.tes}`} >ReMarket</Link>
+	return (
+		<div>
+			<nav
+				className='navbar navbar-expand-lg border-bottom border-body'
+				style={{ backgroundColor: '#6c63ff' }}
+				data-bs-theme='dark'
+			>
+				<div className='container-fluid'>
+					<Link to='/' className={`navbar-brand  ${Style.tes}`}>
+						ReMarket
+					</Link>
 
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+					<button
+						className='navbar-toggler'
+						type='button'
+						data-bs-toggle='collapse'
+						data-bs-target='#navbarColor01'
+						aria-controls='navbarColor01'
+						aria-expanded='false'
+						aria-label='Toggle navigation'
+					>
+						<span className='navbar-toggler-icon'></span>
+					</button>
 
-          <div className="collapse navbar-collapse" id="navbarColor01">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link to="/portfolio" className={`text-decoration-none nav-link ${Style.navLink} `}>Portfolio</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/teeTuote" className={`text-decoration-none nav-link ${Style.navLink}`}>Sell</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/about" className={`text-decoration-none nav-link ${Style.navLink}`}>About</Link>
-              </li>
-            </ul>
+					<div className='collapse navbar-collapse' id='navbarColor01'>
+						<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+							<li className='nav-item'>
+								<Link
+									to='/portfolio'
+									className={`text-decoration-none nav-link ${Style.navLink} `}
+								>
+									Portfolio
+								</Link>
+							</li>
+							<li className='nav-item'>
+								<Link
+									to='/teeTuote'
+									className={`text-decoration-none nav-link ${Style.navLink}`}
+								>
+									Sell
+								</Link>
+							</li>
+							<li className='nav-item'>
+								<Link
+									to='/about'
+									className={`text-decoration-none nav-link ${Style.navLink}`}
+								>
+									About
+								</Link>
+							</li>
+						</ul>
 
-            <Link to="/kirjaudu" className={`btn ${Style.loginBtn} me-2`}>
-              Kirjaudu Sisään
-            </Link>
+						<Link to='/kirjaudu' className={`btn ${Style.loginBtn} me-2`}>
+							Kirjaudu Sisään
+						</Link>
 
-            <Link to="/Rekisteroidy" className={`btn ${Style.registerBtn} me-2`}>
-              Rekisteroidy
-            </Link>
+						<Link
+							to='/Rekisteroidy'
+							className={`btn ${Style.registerBtn} me-2`}
+						>
+							Rekisteroidy
+						</Link>
 
-            <button className={`btn ${Style.logoutBtn}`} type="button">
-              Ulos <BiSolidDoorOpen />
-            </button>
-          </div>
-        </div>
-      </nav>
-    </div>
-  );
+						<button className={`btn ${Style.logoutBtn}`} type='button'>
+							Ulos <BiSolidDoorOpen />
+						</button>
+					</div>
+				</div>
+			</nav>
+		</div>
+	)
 }
 
 export default Navbar
