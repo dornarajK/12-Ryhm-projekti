@@ -7,8 +7,13 @@ import { AppContext } from './App_Context';
 
 const App_State = ({ children }) => {
 
+
+
+
+
   let url = 'http://localhost:3000/api';
   const [tuotteet, setTuotteet] = useState([])
+
 
 
   useEffect(() => {
@@ -96,13 +101,15 @@ const App_State = ({ children }) => {
       return api
   }
 
-
-
-
-
-
   return (
+
+
+  
+
+
+
     <AppContext.Provider value={Rekisteroidy}>
+
 
 
       {children}

@@ -1,6 +1,7 @@
 import React from 'react'
 import '../Style/tee_tuote.css'
 function MyyTuote() {
+<<<<<<< HEAD
 	return (
 		<>
 			<h1>Myytävä tuote</h1>
@@ -23,6 +24,13 @@ function MyyTuote() {
 			</form>
 		</>
 	)
+=======
+  return (
+    <div>
+      <h2>sell</h2>
+    </div>
+  )
+>>>>>>> main
 }
 
 export default MyyTuote
