@@ -7,22 +7,19 @@ import Etusivu from './components/Etusivu'
 import MyyTuote from './components/TeeTuote'
 
 function App() {
-
-  return (
-    <>
-      <Navbar />
-      <div>
-        <Routes>
-          <Route path="/Rekisteroidy" element={<Signup />} />
-          <Route path="/kirjaudu" element={<Login />} />
-          <Route path="/" element={<Etusivu />} />
-          <Route path="/teeTuote" element={<MyyTuote />} />
-        </Routes>
-
-      </div>
-
-    </>
-  )
+	return (
+		<>
+			<Navbar />
+			<div>
+				<Routes>
+					<Route path='/Rekisteroidy' element={<Signup />} />
+					<Route path='/kirjaudu' element={<Login />} />
+					<Route path='/' element={<Etusivu />} />
+					<Route path='/teeTuote' element={<MyyTuote />} />
+				</Routes>
+			</div>
+		</>
+	)
 }
 
 export default App

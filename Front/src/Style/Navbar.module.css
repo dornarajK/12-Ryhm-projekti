@@ -1,4 +1,8 @@
-.logo{
-  font-size: 1.7rem;
-  padding-right: 19px;
+.logo {
+	font-size: 1.7rem;
+	padding-right: 19px;
+}
+
+.header {
+	background-color: #6c63ff;
 }
