@@ -31,7 +31,7 @@ return (
                         <strong>Nimi</strong>
                     </label>
                     <input type="text" 
-                    placeholder=' nimi' 
+                    placeholder='Syötä nimi' 
                     autoComplete='off' 
                     name='email' 
                     className='form-control rounded-0'
@@ -67,9 +67,9 @@ return (
                 Rekisteroidy
                 </button>
                 </form>
-                <p>Already have an account?</p>
+                <p>Onko sinulla jo tili?</p>
                 <Link to="/login" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-                    Login
+                    Kirjaudu sisään
                 </Link>
             
         </div>
