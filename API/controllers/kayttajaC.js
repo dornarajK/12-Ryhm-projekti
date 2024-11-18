@@ -47,7 +47,7 @@ export const kirjaudu = async (req, res) => {
       expiresIn: "9d"
     });
 
-    res.json({ message: `Tervetuloa ${kayttaja.nimi}`, token })
+    res.json({code:'Success', message: `Tervetuloa ${kayttaja.nimi}`, token })
 
   } catch (error) {
     console.error('Login error:', error);

@@ -3,18 +3,25 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
-function Rekisteroidy() {    
+function Kirjaudu() {    
 
-    const [nimi, setNimi] = useState()
     const [sahkoposti, setSahkoposti] = useState()
     const [salasana, setSalasana] = useState()
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:3000/api/Rekisteroidy", { nimi, sahkoposti, salasana })
-        .then(result => {console.log(result)
-    navigate("/kirjaudu")
+        axios.post("http://localhost:3000/api/kirjaudu", { sahkoposti, salasana })
+        .then(result => {
+            console.log("result",result)
+            if(result.data.code === "Success"){
+                console.log("Success")
+                navigate("/")
+            }else{
+                navigate("/Rekisteroidy")
+                alert("Et ole rekisteröitynyt tähän palveluun")
+            }
+    
         })
         .catch(err => console.log(err))
     }
@@ -23,27 +30,15 @@ function Rekisteroidy() {
 return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
         <div className="bg-white p-3 rounded w-25">
-        <h2><center>Rekisteroidy</center></h2>
-
+            <h2><center>Kirjaudu</center></h2>
             <form onSubmit={handleSubmit}>
+                
                 <div className="mb-3">
                     <label htmlFor="email">
-                        <strong>Nimi</strong>
+                        <strong>Sahkoposti</strong>
                     </label>
                     <input type="text" 
-                    placeholder=' nimi' 
-                    autoComplete='off' 
-                    name='email' 
-                    className='form-control rounded-0'
-                    onChange={(e) => setNimi(e.target.value)}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="email">
-                        <strong>Sähköposti</strong>
-                    </label>
-                    <input type="text" 
-                    placeholder='Syötä sähköposti' 
+                    placeholder='Syötä sahkoposti' 
                     autoComplete='off' 
                     name='email' 
                     className='form-control rounded-0' 
@@ -64,12 +59,12 @@ return (
                     />
                 </div>
                 <button type="submit" className="btn btn-success w-100 rounded-0">
-                Rekisteroidy
+                    Login
                 </button>
                 </form>
-                <p>Already have an account?</p>
-                <Link to="/login" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-                    Login
+                <p>Eikö sinulla ole tiliä</p>
+                <Link to="/Rekisteröidy" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
+                    Rekisteröidy
                 </Link>
             
         </div>
@@ -77,34 +72,5 @@ return (
 );
 }
 
-export default Rekisteroidy;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Kirjaudu;
 
