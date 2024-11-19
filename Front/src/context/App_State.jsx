@@ -92,7 +92,9 @@ const App_State = ({ children }) => {
 		return api
 	}
 
-	return <AppContext.Provider value={teeTuote}>{children}</AppContext.Provider>
+	return (
+		<AppContext.Provider value={Rekisteroidy}>{children}</AppContext.Provider>
+	)
 }
 
 export default App_State
