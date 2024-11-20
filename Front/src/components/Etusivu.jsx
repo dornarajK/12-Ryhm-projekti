@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import '../img/kuva1.jpg'
 import { AppContext } from '../context/App_Context'
+import React, { useContext } from 'react'
+import { AppContext } from '../context/App_Context'
+
+import '../Style/Etusivu.css'
 
 const Etusivu = () => {
 	const images = [
@@ -26,6 +30,11 @@ const Etusivu = () => {
 				alt={`Slide ${currentImageIndex + 1}`}
 				style={{ width: '100%', height: 'auto' }} // Mukauta tarpeen mukaan
 			/>
+		</div>
+	)
+	return (
+		<div className='Etusivu'>
+			<h3>Tämä on Etusivu</h3>
 		</div>
 	)
 }
