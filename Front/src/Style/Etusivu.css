@@ -1,3 +1,75 @@
-.Etusivu{
-  height: 70vh;
+.home-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.slideshow-container {
+	width: 100%;
+	max-width: 800px;
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.slide {
+	display: none;
+}
+
+.slide.active {
+	display: block;
+}
+
+.prev,
+.next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.prev {
+	left: 10px;
+}
+
+.next {
+	right: 10px;
+}
+
+.product-lists {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+}
+
+.product-card {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	width: 200px;
+	padding: 10px;
+	text-align: center;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+	width: 100%;
+	height: auto;
+	border-radius: 4px;
+}
+
+.product-name {
+	font-size: 18px;
+	margin: 10px 0;
+}
+
+.product-description {
+	font-size: 14px;
+	color: #666;
 }
