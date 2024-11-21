@@ -7,13 +7,9 @@ import { AppContext } from './App_Context';
 
 const App_State = ({ children }) => {
 
-
-
-
-
-  let url = 'http://localhost:3000/api';
+  const url = 'http://localhost:3000/api';
   const [tuotteet, setTuotteet] = useState([])
-
+  const [reload,setreload ] = useState(true); 
 
 
   useEffect(() => {
@@ -23,7 +19,7 @@ const App_State = ({ children }) => {
           {
             headers: {
               "Content-Type": "application/json"
-            },  
+            },
             withCredentials: true
           });
         setTuotteet(response.data.tuotteet);
@@ -36,7 +32,7 @@ const App_State = ({ children }) => {
 
   }, []);
 
-
+// !
   //*Rekisteroidy
   const Rekisteroidy = async (nimi, sahkoposti, salasana) => {
     const api = await axios.post(`${url}/Rekisteroidy`,
@@ -53,8 +49,6 @@ const App_State = ({ children }) => {
       });
     return api
   }
-
-
   //* kirjaudu
   const Kirjaudu = async (sahkoposti, salasana) => {
     const api = await axios.post(`${url}/kirjaudu`,
@@ -70,15 +64,42 @@ const App_State = ({ children }) => {
       });
     return api
   }
+  //!
 
   //* tee Tuote
+
   const teeTuote = async (tuoteNimi, hinta, tiedot, kuva) => {
-    const api = await axios.post(`${url}/teeTuote`, {
-      tuoteNimi,
-      hinta,
-      tiedot,
-      kuva  
-    },
+    try {
+      const api = await axios.post(
+        `${url}/teeTuote`,
+        {
+          tuoteNimi,
+          hinta,
+          tiedot,
+          kuva, // Base64-muotoinen kuva
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log("Tuote lisätty onnistuneesti:", { tuoteNimi, hinta, tiedot, kuva });
+  
+      setreload(!reload);
+      return api;
+    } catch (error) {
+      console.error("Virhe tuotteen lisäämisessä:", error);
+      throw error;
+    }
+  };
+  
+  
+
+  //* löydä tuote id avulla 
+  const tuoteId = async (id) => {
+    const api = await axios.get(`${url}/${id}`,
       {
         headers: {
           "Content-Type": "application/json"
@@ -86,34 +107,11 @@ const App_State = ({ children }) => {
         withCredentials: true
       })
     return api
-
-  }
-
-  //* löydä tuote id avulla 
-  const tuoteId = async (id) => {
-    const api = await axios.get(`${url}/${id}`,
-      {
-        headers:{
-            "Content-Type": "application/json"
-        },
-        withCredentials: true
-      })
-      return api
   }
 
   return (
-
-
-  
-
-
-
-    <AppContext.Provider value={Rekisteroidy}>
-
-
-
+    <AppContext.Provider value={{teeTuote,tuotteet,tuoteId }}>
       {children}
-      
     </AppContext.Provider>
   );
 }

@@ -9,7 +9,16 @@ const app = express();
 const port = 3000;
 const host = 'localhost';
 
-app.use(cors()); 
+// Increase the limit to, for example, 10mb
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
+app.use(cors({
+  origin: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
 
 app.use('/api', Kayttajaroute);

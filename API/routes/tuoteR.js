@@ -6,10 +6,10 @@ import {TeeTuote, KaikkiTuote, LoydaTuoteId, TuoteKayttajatID} from "../controll
 const route = express.Router();
 
 
-route.post('/teeTuote',authorizeUser,TeeTuote)
-route.get('/kaikkituote', KaikkiTuote)
+route.post('/teeTuote',TeeTuote)
+route.get('/', KaikkiTuote)
 route.get('/:id', LoydaTuoteId)
-route.get('/TuoteKayttajatID/:id/', TuoteKayttajatID)
+route.get('/TuoteKayttajatID/:id', TuoteKayttajatID)
 
 
 export default route;

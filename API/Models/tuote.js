@@ -11,7 +11,7 @@ const tuoteSchema = new mongoose.Schema({
   },
   tiedot: {
     type: String,
-    required: true,
+    required: true, 
   },
   kuva: {
     type: String,

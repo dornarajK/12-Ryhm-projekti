@@ -1,25 +1,24 @@
 import { Tuote } from '../Models/tuote.js';
 
 //* tueten tekemien 
+
 export const TeeTuote = async (req, res) => {
   const { tuoteNimi, hinta, tiedot, kuva } = req.body;
 
   try {
-    const tuote = await Tuote.create(
-      {
-        tuoteNimi,
-        hinta,
-        tiedot,
-        kuva,
-        kayttaja: req.kayttaja
-      });
+    const tuote = await Tuote.create({
+      tuoteNimi,
+      hinta,
+      tiedot,
+      kuva, 
+      kayttaja: req.kayttaja,
+    });
 
-    res.json({ message: 'Tuote tekemine onnistuu', tuote });
+    res.json({ message: "Tuote luotu onnistuneesti", tuote });
+  } catch (error) {
+    res.status(500).json({ message: "Virhe tuotteen luonnissa", error });
   }
-  catch (err) {
-    res.status(500).json({ message: 'Server Error: tuoten tekemisessä', error: err });
-  }
-}
+};
 
 
 // get kaikki tuote 
