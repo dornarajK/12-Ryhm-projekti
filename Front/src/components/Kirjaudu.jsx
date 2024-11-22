@@ -1,76 +1,100 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import img from '../img/concept14.png'
+import '../Style/kirjaudu.css'
 
-function Kirjaudu() {    
+function Kirjaudu() {
+	const [sahkoposti, setSahkoposti] = useState('')
+	const [salasana, setSalasana] = useState('')
+	const [error, setError] = useState('')
+	const navigate = useNavigate()
 
-    const [sahkoposti, setSahkoposti] = useState()
-    const [salasana, setSalasana] = useState()
-    const navigate = useNavigate()
+	const validateForm = () => {
+		if (!sahkoposti || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sahkoposti)) {
+			setError('Syötä kelvollinen sähköposti.')
+			return false
+		}
+		if (!salasana) {
+			setError('Salasana ei voi olla tyhjä.')
+			return false
+		}
+		setError('')
+		return true
+	}
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post("http://localhost:3000/api/kirjaudu", { sahkoposti, salasana })
-        .then(result => {
-            console.log("result",result)
-            if(result.data.code === "Success"){
-                console.log("Success")
-                navigate("/")
-            }else{
-                navigate("/Rekisteroidy")
-                alert("Et ole rekisteröitynyt tähän palveluun")
-            }
-    
-        })
-        .catch(err => console.log(err))
-    }
+	const handleSubmit = async e => {
+		e.preventDefault()
+		if (!validateForm()) return
 
+		try {
+			const result = await axios.post('http://localhost:3000/api/kirjaudu', {
+				sahkoposti,
+				salasana,
+			})
+			if (result.data.code === 'Success') {
+				navigate('/')
+			} else {
+				navigate('/Rekisteroidy')
+				alert('Et ole rekisteröitynyt tähän palveluun')
+			}
+		} catch (err) {
+			console.error('Kirjautumisvirhe:', err)
+			setError('Jotain meni pieleen. Yritä uudelleen myöhemmin.')
+		}
+	}
 
-return (
-    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-        <div className="bg-white p-3 rounded w-25">
-            <h2><center>Kirjaudu</center></h2>
-            <form onSubmit={handleSubmit}>
-                
-                <div className="mb-3">
-                    <label htmlFor="email">
-                        <strong>Sahkoposti</strong>
-                    </label>
-                    <input type="text" 
-                    placeholder='Syötä sahkoposti' 
-                    autoComplete='off' 
-                    name='email' 
-                    className='form-control rounded-0' 
-                    onChange={(e) => setSahkoposti(e.target.value)}
-
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="email">
-                        <strong>Salasana</strong>
-                    </label>
-                    <input type="password" 
-                    placeholder='Syötä salasana' 
-                    name='password' 
-                    className='form-control rounded-0' 
-                    onChange={(e) => setSalasana(e.target.value)}
-
-                    />
-                </div>
-                <button type="submit" className="btn btn-success w-100 rounded-0">
-                    Login
-                </button>
-                </form>
-                <p>Eikö sinulla ole tiliä</p>
-                <Link to="/Rekisteröidy" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-                    Rekisteröidy
-                </Link>
-            
-        </div>
-    </div>
-);
+	return (
+		<div className='taulu'>
+			<div className='kuva'>
+				<img src={img} alt='Kirjautumiskonsepti' />
+			</div>
+			<div className='kirjaudu'>
+				<div>
+					<h2>
+						<center>Kirjaudu</center>
+					</h2>
+					<form onSubmit={handleSubmit} noValidate>
+						{error && <p className='error'>{error}</p>}
+						<div className='mb-3 w-100'>
+							<label htmlFor='email'>
+								<strong>Sähköposti</strong>
+							</label>
+							<input
+								type='email'
+								placeholder='Syötä sähköposti'
+								autoComplete='off'
+								name='email'
+								className='form-control bo'
+								onChange={e => setSahkoposti(e.target.value)}
+								value={sahkoposti}
+							/>
+						</div>
+						<div className='mb-3 w-100'>
+							<label htmlFor='password'>
+								<strong>Salasana</strong>
+							</label>
+							<input
+								type='password'
+								placeholder='Syötä salasana'
+								name='password'
+								className='form-control bo'
+								onChange={e => setSalasana(e.target.value)}
+								value={salasana}
+							/>
+						</div>
+						<button type='submit' className='btn btn-primary w-100 bo cursor '>
+							Kirjaudu
+						</button>
+					</form>
+					<p className='signup-text'>Eikö sinulla ole tiliä?</p>
+					<Link to='/Rekisteröidy' className='link'>
+						Rekisteröidy
+					</Link>
+				</div>
+			</div>
+		</div>
+	)
 }
 
-export default Kirjaudu;
-
+export default Kirjaudu
