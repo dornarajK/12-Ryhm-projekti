@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Protest+Guerrilla&display=swap');
+
+.kuva {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #6c63ff;
+
+	padding: 20px;
+}
+
+.kuva img {
+	max-width: 80%;
+	height: auto;
+}
+
+.taulu {
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 100vh;
+}
+
+.kirjaudu {
+	background-color: #141429;
+	color: white;
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+.bo {
+	border-radius: 10px;
+}
+
+.kirjaudu div {
+	width: 400px;
+}
+
+@media (max-width: 768px) {
+	.kuva,
+	.kirjaudu {
+		width: 100%;
+		text-align: center;
+	}
+}
+
+.kirjaudu h2 {
+	color: #6c63ff;
+	margin-bottom: 20px;
+}
+
+.error {
+	color: red;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+
+.signup-text {
+	margin-top: 15px;
+	font-size: 14px;
+	text-align: center;
+	color: #6c757d;
+}
+
+.link {
+	display: block;
+	margin-top: 20px;
+	text-align: center;
+	text-decoration: none;
+	background-color: #6c63ff;
+	color: white;
+	border: none;
+	padding: 10px 40px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.link:hover {
+	background-color: #574efe;
+	color: black;
+}
