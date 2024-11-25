@@ -34,3 +34,4 @@ export function validateKayttaja(kay) {
 
 // Mallin vienti
 export const Kayttaja = mongoose.model("Kayttaja", KayttajaSchema);
+

@@ -13,10 +13,12 @@ function Kirjaudu() {
         e.preventDefault()
         axios.post("http://localhost:3000/api/kirjaudu", { sahkoposti, salasana })
         .then(result => {
-            console.log("result",result)
-            if(result.data.code === "Success"){
-                console.log("Success")
+            // console.log("result",result)
+            if(result.data.code === "Success"){          
+                console.log(result.nimi);
+                localStorage.setItem('nimi', result.nimi);
                 navigate("/")
+
             }else{
                 navigate("/Rekisteroidy")
                 alert("Et ole rekisteröitynyt tähän palveluun")
@@ -73,4 +75,3 @@ return (
 }
 
 export default Kirjaudu;
-

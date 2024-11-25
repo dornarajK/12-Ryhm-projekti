@@ -36,6 +36,7 @@ export const kirjaudu = async (req, res) => {
   try {
     const kayttaja = await Kayttaja.findOne({ sahkoposti });
 
+  console.log("gsfsd",kayttaja);
     if (!kayttaja) {
       return res.status(400).send('Väärä sähköposti tai salasana.');
     }
@@ -46,8 +47,8 @@ export const kirjaudu = async (req, res) => {
     const token = jwt.sign({ kayttajaId: kayttaja._id }, process.env.JWT_SECRET || 'SecretKey', {
       expiresIn: "9d"
     });
-
-    res.json({code:'Success', message: `Tervetuloa ${kayttaja.nimi}`, token })
+    
+    res.json({code:'Success', nimi:kayttaja.nimi, message: `Tervetuloa ${kayttaja.nimi}`, token })
 
   } catch (error) {
     console.error('Login error:', error);

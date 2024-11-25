@@ -32,41 +32,7 @@ const App_State = ({ children }) => {
 
   }, []);
 
-// !
-  //*Rekisteroidy
-  const Rekisteroidy = async (nimi, sahkoposti, salasana) => {
-    const api = await axios.post(`${url}/Rekisteroidy`,
-      {
-        nimi,
-        sahkoposti,
-        salasana
-      },
-      {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        withCredentials: true
-      });
-    return api
-  }
-  //* kirjaudu
-  const Kirjaudu = async (sahkoposti, salasana) => {
-    const api = await axios.post(`${url}/kirjaudu`,
-      {
-        sahkoposti,
-        salasana
-      },
-      {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        withCredentials: true
-      });
-    return api
-  }
-  //!
 
-  //* tee Tuote
 
   const teeTuote = async (tuoteNimi, hinta, tiedot, kuva) => {
     try {
