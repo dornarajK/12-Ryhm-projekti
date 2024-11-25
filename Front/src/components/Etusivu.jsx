@@ -1,98 +1,90 @@
-import React, { useState, useEffect } from 'react'
-import '../Style/etusivu.css'
-
-// Tuo kaikki kuvat kansiosta
-const images = import.meta.glob('../img/*', { eager: true })
+import React, { useState, useEffect } from 'react';
+import '../Style/etusivu.css';
+import { useContext } from 'react';
+import { AppContext } from '../context/App_Context';
+import { Link } from 'react-router-dom'; // Import Link
 
 const HomePage = () => {
-	// Luo dynaamiset kuvat
-	const slides = Object.keys(images).map(path => ({
-		src: images[path].default, // Webpack/Vite käyttää tätä
-		alt: path.split('/').pop(), // Hae tiedostonimi
-		caption: 'Caption for ' + path.split('/').pop(),
-	}))
+  const { tuotteet } = useContext(AppContext);
 
-	const products = [
-		{
-			id: 1,
-			name: 'Tuote 1',
-			description: 'Tämä on Tuote 1:n kuvaus.',
-			image: images['../img/kuva1.jpg']?.default,
-			hinta: '100€',
-		},
-		{
-			id: 2,
-			name: 'Tuote 2',
-			description: 'Tämä on Tuote 2:n kuvaus.',
-			image: images['../img/kuva3.jpg']?.default,
-			hinta: '100€',
-		},
-		{
-			id: 3,
-			name: 'Tuote 3',
-			description: 'Tämä on Tuote 3:n kuvaus.',
-			image: images['../img/kuva2.jpg']?.default,
-			hinta: '100€',
-		},
-	]
+  console.log('etusivu', tuotteet);
 
-	const [currentSlide, setCurrentSlide] = useState(0)
+  const slides = tuotteet.map((tuote) => ({
+    src: tuote.kuva,
+    alt: tuote.tuoteNimi,
+  }));
 
-	// Automaatio kuvan vaihtoon
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentSlide(prev => (prev + 1) % slides.length)
-		}, 5000) // Vaihto 5 sekunnin välein
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-		return () => clearInterval(interval) // Puhdistus, kun komponentti poistetaan
-	}, [slides.length])
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 7000); // Change image every 7 seconds
 
-	const nextSlide = () => {
-		setCurrentSlide(prev => (prev + 1) % slides.length)
-	}
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, [slides.length]);
 
-	const prevSlide = () => {
-		setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length)
-	}
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
 
-	return (
-		<div className='home-page'>
-			{/* Slideshow */}
-			<div className='slideshow-container'>
-				{slides.map((slide, index) => (
-					<div
-						className={`slide ${index === currentSlide ? 'active' : ''}`}
-						key={index}
-						style={{ display: index === currentSlide ? 'block' : 'none' }}
-					>
-						<img src={slide.src} alt={slide.alt} style={{ width: '100%' }} />
-					</div>
-				))}
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
-				<button className='prev' onClick={prevSlide}>
-					❮
-				</button>
-				<button className='next' onClick={nextSlide}>
-					❯
-				</button>
-			</div>
+  return (
+    <div className='home-page'>
+      <div className='slideshow-container'>
+        {slides.map((slide, index) => (
+          <div
+            className={`slide ${index === currentSlide ? 'active' : ''}`}
+            key={index}
+            style={{ display: index === currentSlide ? 'block' : 'none' }}
+          >
+            <img src={slide.src} alt={slide.alt} style={{ width: '100%', height: '77vh' }} />
+            <div className='caption'>{slide.caption}</div>
+          </div>
+        ))}
 
-			{/* Product List */}
-			<div className='product-lists'>
-				{products.map(product => (
-					<div className='product-card' key={product.id}>
-						<img
-							src={product.image}
-							alt={product.name}
-							className='product-image'
-						/>
-						<span className='product-name'>{product.name}</span>
-						<span className='product-description'>{product.hinta}</span>
-					</div>
-				))}
-			</div>
-		</div>
-	)
-}
+        <button className='prev' onClick={prevSlide}>
+          ❮
+        </button>
+        <button className='next' onClick={nextSlide}>
+          ❯
+        </button>
+      </div>
 
-export default HomePage
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+        {tuotteet && tuotteet.length > 0 ? (
+          tuotteet.map((tuote) => (
+            <div
+            key={tuote._id} 
+            style={{
+              border: '1px solid #ccc',
+              padding: '10px',
+              borderRadius: '8px',
+              width: '200px',
+              textAlign: 'center',
+            }}
+          >
+            <Link to={`/${tuote._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <img
+                src={tuote.kuva}
+                alt={tuote.tuoteNimi}
+                style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+              />
+              <p>{tuote.tuoteNimi}</p>
+              <p><span>{tuote.hinta}</span>€</p>
+            </Link>
+          </div>
+          
+          ))
+        ) : (
+          <p>Tuotteita ei löytynyt.</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;

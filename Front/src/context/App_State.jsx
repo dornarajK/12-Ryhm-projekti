@@ -8,9 +8,9 @@ import { AppContext } from './App_Context';
 const App_State = ({ children }) => {
 
   const url = 'http://localhost:3000/api';
-  const [tuotteet, setTuotteet] = useState([])
-  const [reload,setreload ] = useState(true); 
+  const [tuotteet, setTuotteet] = useState([]);
 
+  const [reload,setreload ] = useState(true); 
 
   useEffect(() => {
     const fetchTuote = async () => {
@@ -22,7 +22,8 @@ const App_State = ({ children }) => {
             },
             withCredentials: true
           });
-        setTuotteet(response.data.tuotteet);
+          console.log('hettu data :',response.data)
+        setTuotteet(response.data);
       }
       catch (err) {
         console.error("Virhe haettaessa tuotteita:", err);
@@ -76,7 +77,7 @@ const App_State = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{teeTuote,tuotteet,tuoteId }}>
+    <AppContext.Provider value={{teeTuote,tuotteet, setTuotteet,tuoteId }}>
       {children}
     </AppContext.Provider>
   );

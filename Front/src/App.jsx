@@ -9,7 +9,7 @@ import Portfolio from './components/Portfolio'
 import Footer from './components/Footer'
 import About from './components/About'
 import './App.css';
-
+import TuoteTiedot from './components/TuoteTiedot'
 function App() {
 
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route path="/teeTuote" element={<MyyTuote />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/about" element={<About />} />
+          <Route path="/:id" element={<TuoteTiedot />} /> 
         </Routes>
       </div>
       <Footer/>
