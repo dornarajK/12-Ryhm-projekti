@@ -1,55 +1,66 @@
-import React, { useContext, useState } from 'react';
+
+// export default MyyTuote;
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Style/tee_tuote.css';
 import { AppContext } from '../context/App_Context';
 
 function MyyTuote() {
   const { teeTuote } = useContext(AppContext);
-
-
   const [formData, setFormData] = useState({
     tuoteNimi: '',
     hinta: '',
     tiedot: '',
-    kuva: null, 
+    kuva: null,
   });
+  const [previewImage, setPreviewImage] = useState(null);
+  const navigate = useNavigate();
 
-  const [previewImage, setPreviewImage] = useState(null); 
+  useEffect(() => {
+    const yourAuthToken = localStorage.getItem('authToken');
+    if (!yourAuthToken) {
+      console.error('Token puuttuu! Ohjataan kirjautumaan...');
+      navigate('/kirjaudu'); // Ohjaa kirjautumissivulle, jos tokenia ei löydy
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-  
+
     if (name === "kuva" && files.length > 0) {
       const file = files[0];
       const reader = new FileReader();
-  
+
       reader.onloadend = () => {
-        setFormData((prev) => ({ ...prev, kuva: reader.result })); 
+        setFormData((prev) => ({ ...prev, kuva: reader.result }));
         setPreviewImage(reader.result);
       };
-      reader.readAsDataURL(file); 
+      reader.readAsDataURL(file);
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
-  
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-
+    console.log("testi");
+    
     const { tuoteNimi, hinta, tiedot, kuva } = formData;
 
-   
-    const result = await teeTuote(tuoteNimi, hinta, tiedot, kuva);
-
-    if (result) {
-   
-      setFormData({ tuoteNimi: '', hinta: '', tiedot: '', kuva: null });
-      setPreviewImage(null);
-    } else {
-      // Handle error
-      console.error('Error publishing product');
+    try {
+      const result = await teeTuote(tuoteNimi, hinta, tiedot, kuva);
+      if (result) {
+        setFormData({ tuoteNimi: '', hinta: '', tiedot: '', kuva: null });
+        setPreviewImage(null);
+        console.log("Tuote julkaistu onnistuneesti!");
+      }
+    } catch (error) {
+      console.error('Virhe tuotetta julkaistaessa:', error);
     }
   };
 
+
+  
   return (
     <div className='tee'>
       <h1>Myytävä tuote</h1>
@@ -84,7 +95,6 @@ function MyyTuote() {
             onChange={handleChange}
           />
         </div>
-
         <div>
           <div className='valitsee'>
             <span className='btn btn-primary btn-file'>
@@ -97,7 +107,6 @@ function MyyTuote() {
               />
             </span>
           </div>
-
           {previewImage && (
             <div>
               <img

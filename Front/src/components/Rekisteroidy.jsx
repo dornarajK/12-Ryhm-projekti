@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 function Rekisteroidy() {    
 
-    const [nimi, setNimi] = useState()
-    const [sahkoposti, setSahkoposti] = useState()
-    const [salasana, setSalasana] = useState()
+    const [nimi, setNimi] = useState("")
+    const [sahkoposti, setSahkoposti] = useState("")
+    const [salasana, setSalasana] = useState("")
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
@@ -18,6 +18,7 @@ function Rekisteroidy() {
         })
         .catch(err => console.log(err))
     }
+
 
 
 return (
@@ -78,33 +79,3 @@ return (
 }
 
 export default Rekisteroidy;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

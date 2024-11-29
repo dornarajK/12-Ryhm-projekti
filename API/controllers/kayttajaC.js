@@ -1,7 +1,6 @@
 import { Kayttaja, validateKayttaja } from '../Models/kayttaja.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
 // Rekisteröidy
 export const Rekisteroidy = async (req, res) => {
   const { nimi, sahkoposti, salasana } = req.body;
@@ -23,6 +22,10 @@ export const Rekisteroidy = async (req, res) => {
 
     const newKayttaja = await Kayttaja.create({ nimi, sahkoposti, salasana: hashPass });
 
+    const token = jwt.sign({ kayttajaId: newKayttaja._id, nimi, sahkoposti }, process.env.JWT_SECRET || 'SecretKey');
+    // Store the token in the cookie
+    res.cookie('authcookie', token, { maxAge: 900000, httpOnly: true })
+
     res.json({ message: 'User Registered Successfully!', newKayttaja });
   } catch (err) {
     res.status(500).json({ message: 'Server Error', error: err });
@@ -36,10 +39,12 @@ export const kirjaudu = async (req, res) => {
   try {
     const kayttaja = await Kayttaja.findOne({ sahkoposti });
 
-    if (!kayttaja) {
-      return res.status(400).send('Väärä sähköposti tai salasana.');
-    }
     const validPass = await bcrypt.compare(salasana, kayttaja.salasana);
+    
+    if (!kayttaja || !validPass) {
+      return res.status(401).json({ message: 'Väärä sähköposti tai salasana.' });
+    }
+    
     if (!validPass) {
       return res.status(401).json({ message: 'salasana Virhe' });
     }
@@ -47,7 +52,10 @@ export const kirjaudu = async (req, res) => {
       expiresIn: "9d"
     });
 
-    res.json({code:'Success', message: `Tervetuloa ${kayttaja.nimi}`, token })
+    
+    res.cookie('authcookie', token, { maxAge: 900000, httpOnly: true });
+
+    res.json({ code: 'Success', message: `Tervetuloa ${kayttaja.nimi}`, token })
 
   } catch (error) {
     console.error('Login error:', error);
@@ -59,5 +67,10 @@ export const kirjaudu = async (req, res) => {
 
 //käyttäjä portfolio
 export const portfolio = async (req, res) => {
-  res.json({ kayttaja:  req.kayttaja});
+  if (!req.user) {
+    return res.status(404).json({ message: "Käyttäjää ei löytynyt." });
+  }
+  res.json({ kayttaja: req.user });
+  
+
 }//portfolio loppu
