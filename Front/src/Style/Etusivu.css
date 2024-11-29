@@ -1,15 +1,22 @@
+/* Etusivun yleinen asettelu */
 .home-page {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 20px;
+	font-family: Arial, sans-serif;
+	margin: 0 auto;
+	padding: 20px 500px 20px 500px;
+
+	box-sizing: border-box;
+	background-color: #141429;
+	width: 100%;
 }
 
+/* Kuvakaruselli */
 .slideshow-container {
-	width: 100%;
-	max-width: 800px;
 	position: relative;
-	margin-bottom: 30px;
+	max-width: 100%;
+	margin: 20px auto;
+	overflow: hidden;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .slide {
@@ -20,6 +27,25 @@
 	display: block;
 }
 
+.slide img {
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+}
+
+.caption {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+/* Navigointipainikkeet */
 .prev,
 .next {
 	position: absolute;
@@ -28,9 +54,13 @@
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 	border: none;
-	padding: 10px;
 	cursor: pointer;
-	z-index: 10;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .prev {
@@ -41,37 +71,72 @@
 	right: 10px;
 }
 
-.product-lists {
+.prev:hover,
+.next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Tuotteet-osio */
+.tuotteet {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: center;
+
+	gap: 10px; /* Välit tuotteiden välillä */
 }
 
-.product-card {
-	background: #fff;
+.tuote-kortti {
+	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	border-radius: 8px;
-	width: 200px;
-	padding: 10px;
+	overflow: hidden;
 	text-align: center;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	flex: 1 1; /* 4 tuotetta per rivi, vähennetään gap */
+	max-width: 210px; /* Rajoitetaan kortin maksimileveys */
+	min-width: 210px; /* Varmistetaan, että kortti ei ole liian kapea */
+	display: gap;
+
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product-image {
+.tuote-kortti:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tuote-kortti img {
 	width: 100%;
-	height: auto;
-	border-radius: 4px;
+	height: 150px; /* Vakio korkeus kuville */
+	object-fit: cover;
+	border-bottom: 1px solid #ddd;
 }
 
-.product-name {
-	font-size: 18px;
+.tuote-nimi {
+	font-size: 16px;
+	color: #333;
 	margin: 10px 0;
 }
 
-.product-description {
+.tuote-hinta {
 	font-size: 14px;
-	color: #666;
+	color: #555;
+	margin: 5px 0 15px;
 }
 
+.tuote-linkki {
+	text-decoration: none;
+	color: inherit;
+}
 
+/* Jos tuotteita ei löydy */
+.ei-tuotteita {
+	color: white;
+	text-align: center;
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+.haku {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

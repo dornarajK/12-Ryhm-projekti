@@ -10,7 +10,6 @@ function Kirjaudu() {
 	const [error, setError] = useState('')
 	const navigate = useNavigate()
 
-	
 	const validateForm = () => {
 		if (!sahkoposti || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sahkoposti)) {
 			setError('Syötä kelvollinen sähköposti.')
@@ -24,29 +23,29 @@ function Kirjaudu() {
 		return true
 	}
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+	const handleSubmit = async e => {
+		e.preventDefault()
+		if (!validateForm()) return
 
-    try {
-        const result = await axios.post('http://localhost:3000/api/kirjaudu', {
-            sahkoposti,
-            salasana,
-        });
+		try {
+			const result = await axios.post('http://localhost:3000/api/kirjaudu', {
+				sahkoposti,
+				salasana,
+			})
 
-        if (result.data.code === 'Success') {
-            // Tallenna token localStorageen
-            localStorage.setItem('authToken', result.data.token); // Oletetaan, että token tulee tässä kentässä
-            navigate('/'); 
-        } else {
-            navigate('/Rekisteroidy');
-            alert('Et ole rekisteröitynyt tähän palveluun');
-        }
-    } catch (err) {
-        console.error('Kirjautumisvirhe:', err);
-        setError('Jotain meni pieleen. Yritä uudelleen myöhemmin.');
-    }
-};
+			if (result.data.code === 'Success') {
+				// Tallenna token localStorageen
+				localStorage.setItem('authToken', result.data.token) // Oletetaan, että token tulee tässä kentässä
+				navigate('/')
+			} else {
+				navigate('/Rekisteroidy')
+				alert('Et ole rekisteröitynyt tähän palveluun')
+			}
+		} catch (err) {
+			console.error('Kirjautumisvirhe:', err)
+			setError('Jotain meni pieleen. Yritä uudelleen myöhemmin.')
+		}
+	}
 
 	return (
 		<div className='taulu'>
@@ -92,7 +91,7 @@ const handleSubmit = async (e) => {
 						</button>
 					</form>
 					<p className='signup-text'>Eikö sinulla ole tiliä?</p>
-					<Link to='/Rekisteroidy' className='link'>
+					<Link to='/Rekisteroidy' className='linkki'>
 						Rekisteröidy
 					</Link>
 				</div>
@@ -100,4 +99,4 @@ const handleSubmit = async (e) => {
 		</div>
 	)
 }
-export default Kirjaudu;
+export default Kirjaudu
