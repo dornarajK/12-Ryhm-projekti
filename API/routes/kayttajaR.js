@@ -11,7 +11,7 @@ route.post('/Rekisteroidy', Rekisteroidy)
 
 // kirjautuminen sisään 
 route.post('/kirjaudu',kirjaudu)
-
+  
 // käyttäjä portfolio
 route.get('/portfolio',authorizeUser,portfolio)
 

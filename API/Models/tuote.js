@@ -24,4 +24,5 @@ const tuoteSchema = new mongoose.Schema({
 })
 
 
+
 export const Tuote = mongoose.model('Tuote', tuoteSchema);

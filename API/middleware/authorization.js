@@ -1,28 +1,47 @@
 import { Kayttaja } from "../Models/kayttaja.js";
-import jwt from 'jsonwebtoken';
+import { Rekisteroidy} from "../controllers/kayttajaC.js";
 
-// Authorization middleware
+import jwt from "jsonwebtoken";
+
+
 export const authorizeUser = async (req, res, next) => {
+<<<<<<< HEAD
   const token = req.header("Authorization")?.replace('Bearer ', '');
   console.log('login');
+=======
+  const authCookie = req.headers.authorization;
+  // console.log(authCookie);
+  
+  // const authCookie = req.cookies['authcookie'];
+  // console.log(authCookie);
+  
+  if (!authCookie) {
+    console.log("Authcookie puuttuu.");
+    return res.status(401).json({ message: "Kirjaudu ensin sisään." });
+  }
+
+
+>>>>>>> main
   try {
-    if (!token) return res.status(401).json({ message: 'Kirjaudu ensin sisään.' });
+    
+    const decoded = jwt.verify(authCookie.split(' ')[1], "SecretKey");
+    // console.log("Token decoded:", decoded);
+    
+    const user = await Kayttaja.findById(decoded.kayttajaId);
+    if (!user) {
+      console.log("Käyttäjää ei löytynyt ID:llä", decoded.kayttajaId);
+      return res.status(404).json({ message: "Käyttäjää ei löytynyt." });
+    }
 
-    const decode = jwt.verify(token, process.env.JWT_SECRET || "SecretKey");
-
-    const id = decode.kayttajaId;
-
-    let user = await Kayttaja.findById(id);
-    if (!user) return res.status(404).json({ message: "Käyttäjää ei ole olemassa." });
-
-    req.user = user;
+    req.user = user; // Set user object
+    // console.log("Käyttäjä middleware läpi:", user);
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Virheellinen tai vanhentunut tunnus.' });
+    console.error("Virhe tunnistuksessa:", error.message);
+    return res.status(401).json({ message: "Virheellinen tai vanhentunut tunnus." });
   }
 
   // console.log(userData);
   // localStorage.setItem('user', JSON.stringify(userData));
 
 };
-

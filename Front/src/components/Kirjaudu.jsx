@@ -12,6 +12,7 @@ function Kirjaudu() {
 	const navigate = useNavigate()
 	
 
+	
 	const validateForm = () => {
 		if (!sahkoposti || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sahkoposti)) {
 			setError('Syötä kelvollinen sähköposti.')
@@ -25,10 +26,11 @@ function Kirjaudu() {
 		return true
 	}
 
-	const handleSubmit = async e => {
-		e.preventDefault()
-		if (!validateForm()) return
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
 
+<<<<<<< HEAD
 		try {
 			const result = await axios.post('http://localhost:3000/api/kirjaudu', {
 				sahkoposti,
@@ -47,6 +49,27 @@ function Kirjaudu() {
 			setError('Jotain meni pieleen. Yritä uudelleen myöhemmin.')
 		}
 	}
+=======
+    try {
+        const result = await axios.post('http://localhost:3000/api/kirjaudu', {
+            sahkoposti,
+            salasana,
+        });
+
+        if (result.data.code === 'Success') {
+            // Tallenna token localStorageen
+            localStorage.setItem('authToken', result.data.token); // Oletetaan, että token tulee tässä kentässä
+            navigate('/'); 
+        } else {
+            navigate('/Rekisteroidy');
+            alert('Et ole rekisteröitynyt tähän palveluun');
+        }
+    } catch (err) {
+        console.error('Kirjautumisvirhe:', err);
+        setError('Jotain meni pieleen. Yritä uudelleen myöhemmin.');
+    }
+};
+>>>>>>> main
 
 	return (
 		<div className='taulu'>
@@ -100,5 +123,4 @@ function Kirjaudu() {
 		</div>
 	)
 }
-
-export default Kirjaudu
+export default Kirjaudu;
