@@ -6,11 +6,32 @@ import { AppContext } from './App_Context';
 
 
 const App_State = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+
+  
   const url = 'http://localhost:3000/api';
   const [tuotteet, setTuotteet] = useState([]);
 
   const [reload,setreload ] = useState(true); 
+
+  useEffect(() => {     
+    if (token) {
+        localStorage.setItem('token', token);
+    }
+
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    if (tokenFromLocalStorage) {
+        setToken(tokenFromLocalStorage); 
+        setisAuthenticate(true); 
+    } 
+
+}, [token, reload]);
+
+
+
+
+
 
   useEffect(() => {
     const fetchTuote = async () => {
@@ -77,7 +98,7 @@ const App_State = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{teeTuote,tuotteet, setTuotteet,tuoteId }}>
+    <AppContext.Provider value={{isAuthenticated,setIsAuthenticated,teeTuote,tuotteet, setTuotteet,tuoteId }}>
       {children}
     </AppContext.Provider>
   );
