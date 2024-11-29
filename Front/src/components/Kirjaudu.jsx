@@ -3,14 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import img from '../img/concept14.png'
 import '../Style/kirjaudu.css'
-import { AppContext } from '../context/App_Context'
+
 
 function Kirjaudu() {
 	const [sahkoposti, setSahkoposti] = useState('')
 	const [salasana, setSalasana] = useState('')
 	const [error, setError] = useState('')
 	const navigate = useNavigate()
-	const {setToken, setisAuthenticate} = useContext(AppContext);
+	
 
 	const validateForm = () => {
 		if (!sahkoposti || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sahkoposti)) {

@@ -5,13 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/App_Context';
 
 function Navbar() {
-  const {isAuthenticated, setIsAuthenticated} = useContext(AppContext);
+  // const {isAuthenticated, setIsAuthenticated} = useContext(AppContext);
   const navigate = useNavigate(); 
 
-  const handleLogout = () => {         
-	setIsAuthenticated(false); // Päivitä tila uloskirjautuneeksi
-	localStorage.removeItem('token'); // Poista token localStoragesta
-	navigate('/kirjaudu'); // Ohjaa kirjautumissivulle 
+  // const handleLogout = () => {         
+	// setIsAuthenticated(false); // Päivitä tila uloskirjautuneeksi
+	// localStorage.removeItem('token'); // Poista token localStoragesta
+	// navigate('/kirjaudu'); // Ohjaa kirjautumissivulle 
 	
 
   
@@ -68,7 +68,6 @@ function Navbar() {
       </nav>
     </div>
   );
-}
 
 export default Navbar;
 
