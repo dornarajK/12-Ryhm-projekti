@@ -5,10 +5,6 @@ import jwt from "jsonwebtoken";
 
 
 export const authorizeUser = async (req, res, next) => {
-<<<<<<< HEAD
-  const token = req.header("Authorization")?.replace('Bearer ', '');
-  console.log('login');
-=======
   const authCookie = req.headers.authorization;
   // console.log(authCookie);
   
@@ -21,7 +17,6 @@ export const authorizeUser = async (req, res, next) => {
   }
 
 
->>>>>>> main
   try {
     
     const decoded = jwt.verify(authCookie.split(' ')[1], "SecretKey");

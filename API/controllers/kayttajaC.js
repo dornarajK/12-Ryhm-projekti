@@ -39,13 +39,6 @@ export const kirjaudu = async (req, res) => {
   try {
     const kayttaja = await Kayttaja.findOne({ sahkoposti });
 
-<<<<<<< HEAD
-  console.log("gsfsd",kayttaja);
-    if (!kayttaja) {
-      return res.status(400).send('Väärä sähköposti tai salasana.');
-    }
-=======
->>>>>>> main
     const validPass = await bcrypt.compare(salasana, kayttaja.salasana);
     
     if (!kayttaja || !validPass) {
@@ -58,16 +51,11 @@ export const kirjaudu = async (req, res) => {
     const token = jwt.sign({ kayttajaId: kayttaja._id }, process.env.JWT_SECRET || 'SecretKey', {
       expiresIn: "9d"
     });
-<<<<<<< HEAD
-    
-    res.json({code:'Success', nimi:kayttaja.nimi, message: `Tervetuloa ${kayttaja.nimi}`, token })
-=======
 
     
     res.cookie('authcookie', token, { maxAge: 900000, httpOnly: true });
 
     res.json({ code: 'Success', message: `Tervetuloa ${kayttaja.nimi}`, token })
->>>>>>> main
 
   } catch (error) {
     console.error('Login error:', error);

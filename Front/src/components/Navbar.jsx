@@ -1,75 +1,80 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import { BiSolidDoorOpen } from "react-icons/bi";
 import Style from '../Style/Navbar.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { AppContext } from '../context/App_Context';
 
 function Navbar() {
-  // const {isAuthenticated, setIsAuthenticated} = useContext(AppContext);
-  const navigate = useNavigate(); 
-
-  // const handleLogout = () => {         
-	// setIsAuthenticated(false); // Päivitä tila uloskirjautuneeksi
-	// localStorage.removeItem('token'); // Poista token localStoragesta
-	// navigate('/kirjaudu'); // Ohjaa kirjautumissivulle 
-	
-
-  
-//   useEffect(() => {
-//     const user = localStorage.getItem('Kayttaja'); 
-//     console.log("kjh",user);
-//     if (user) {
-//       setIsLoggedIn(true);
-//     }
-//   }, []);
-
- 
-  };
-
   return (
     <div>
-      <nav className="navbar navbar-expand-lg border-bottom border-body" style={{ backgroundColor: '#6c63ff'}} data-bs-theme="dark">
-        <div className="container-fluid">
-          <Link to="/" className={`navbar-brand ${Style.tes}`}>ReMarket</Link>
-
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+      <nav
+        className='navbar navbar-expand-lg border-body'
+        style={{ backgroundColor: '#6c63ff' }}
+        data-bs-theme='dark'
+      >
+        <div className='container-fluid'>
+          <Link to='/' className={`navbar-brand  ${Style.tes}`}>
+            ReMarket
+          </Link>
+ 
+          <button
+            className='navbar-toggler'
+            type='button'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarColor01'
+            aria-controls='navbarColor01'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+          >
+            <span className='navbar-toggler-icon'></span>
           </button>
-
-          <div className="collapse navbar-collapse" id="navbarColor01">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link to="/portfolio" className={`text-decoration-none nav-link ${Style.navLink}`}>Portfolio</Link>
+ 
+          <div className='collapse navbar-collapse' id='navbarColor01'>
+            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+              <li className='nav-item'>
+                <Link
+                  to='/portfolio'
+                  className={`text-decoration-none nav-link ${Style.navLink} `}
+                >
+                  Portfolio
+                </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/teeTuote" className={`text-decoration-none nav-link ${Style.navLink}`}>Sell</Link>
+              <li className='nav-item'>
+                <Link
+                  to='/teeTuote'
+                  className={`text-decoration-none nav-link ${Style.navLink}`}
+                >
+                  Sell
+                </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/about" className={`text-decoration-none nav-link ${Style.navLink}`}>About</Link>
+              <li className='nav-item'>
+                <Link
+                  to='/about'
+                  className={`text-decoration-none nav-link ${Style.navLink}`}
+                >
+                  About
+                </Link>
               </li>
             </ul>
-
-            {!isAuthenticated ? (
-              <>
-                <Link to="/kirjaudu" className={`btn ${Style.loginBtn} me-2`}>
-                  Kirjaudu Sisään
-                </Link>
-                <Link to="/Rekisteroidy" className={`btn ${Style.registerBtn} me-2`}>
-                  Rekisteröidy
-                </Link>
-              </>
-            ) : (
-              <button className={`btn ${Style.logoutBtn}`} type="button" onClick={handleLogout}>
-                Ulos <BiSolidDoorOpen />
-              </button>
-            )}
+ 
+            <Link to='/kirjaudu' className={`btn ${Style.loginBtn} me-2`}>
+              Kirjaudu Sisään
+            </Link>
+ 
+            <Link
+              to='/Rekisteroidy'
+              className={`btn ${Style.registerBtn} me-2`}
+            >
+              Rekisteroidy
+            </Link>
+ 
+            <button className={`btn ${Style.logoutBtn}`} type='button'>
+              Ulos <BiSolidDoorOpen />
+            </button>
           </div>
         </div>
       </nav>
     </div>
-  );
+  )
+}
 
 export default Navbar;
-
-
-
