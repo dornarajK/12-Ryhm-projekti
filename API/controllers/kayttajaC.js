@@ -7,7 +7,7 @@ export const Rekisteroidy = async (req, res) => {
 
   // Validointi tarkistus 
   const { error } = validateKayttaja(req.body);
-  if (error) {
+  if (error) {  
     return res.status(400).send(error.details[0].message);
   }
 

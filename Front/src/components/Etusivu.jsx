@@ -14,6 +14,7 @@ const HomePage = () => {
         tuote.tuoteNimi.toLowerCase().includes(hakutermi.toLowerCase())
     )
 
+
     return (
         <>
             <Haku hakutermi={hakutermi} setHakutermi={setHakutermi} />

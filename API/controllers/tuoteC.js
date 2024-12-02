@@ -37,20 +37,34 @@ export const KaikkiTuote = async (req, res) => {
 }
 
 // get löydä tuote id avulla
+// export const LoydaTuoteId = async (req, res) => {
+//   const id = req.params.id;
+//   try {
+//     const tuote = await Tuote.findById(id)
+
+//     if (!tuote) {
+//       res.json({ message: 'Tuote ei löytynyt', });
+//     }
+//     res.json(tuote)
+//   }
+//   catch (err) {
+//     res.status(500).json({ message: 'Server Error: Tuote löytämisessä id avulla', error: err })
+//   }
+// }
 export const LoydaTuoteId = async (req, res) => {
   const id = req.params.id;
   try {
-    const tuote = await Tuote.findById(id)
+    const tuote = await Tuote.findById(id).populate('kayttaja', 'sahkoposti');
 
     if (!tuote) {
-      res.json({ message: 'Tuote ei löytynyt', });
+      return res.json({ message: 'Tuote ei löytynyt' });
     }
-    res.json(tuote)
+    res.json(tuote);
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error: Tuote löytämisessä id avulla', error: err });
   }
-  catch (err) {
-    res.status(500).json({ message: 'Server Error: Tuote löytämisessä id avulla', error: err })
-  }
-}
+};
+
 
 // get löydä tuote käyttäjä id avulla
 
@@ -65,3 +79,5 @@ export const TuoteKayttajatID = async (req, res) => {
     res.status(500).json({ message: 'Virhe käyttäjän tuotteiden hakemisessa', error: err });
   }
 };
+
+
