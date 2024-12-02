@@ -12,7 +12,7 @@ export const authorizeUser = async (req, res, next) => {
   // console.log(authCookie);
   
   if (!authCookie) {
-    console.log("Authcookie puuttuu.");
+    // console.log("Authcookie puuttuu.");
     return res.status(401).json({ message: "Kirjaudu ensin sisään." });
   }
 
@@ -24,7 +24,7 @@ export const authorizeUser = async (req, res, next) => {
     
     const user = await Kayttaja.findById(decoded.kayttajaId);
     if (!user) {
-      console.log("Käyttäjää ei löytynyt ID:llä", decoded.kayttajaId);
+      // console.log("Käyttäjää ei löytynyt ID:llä", decoded.kayttajaId);
       return res.status(404).json({ message: "Käyttäjää ei löytynyt." });
     }
 

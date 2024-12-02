@@ -17,7 +17,7 @@ export const TeeTuote = async (req, res) => {
       kuva,
       kayttaja: req.user._id, 
     });
-    console.log("Tuote tallennetaan:", { tuoteNimi, hinta, tiedot, kuva, kayttaja: req.user._id });
+    // console.log("Tuote tallennetaan:", { tuoteNimi, hinta, tiedot, kuva, kayttaja: req.user._id });
     res.json({ message: "Tuote luotu onnistuneesti", tuote });
   } catch (error) {
     res.status(500).json({ message: "Virhe tuotteen luonnissa", error });
