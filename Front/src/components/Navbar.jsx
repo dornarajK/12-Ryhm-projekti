@@ -2,12 +2,18 @@ import React from 'react';
 import { BiSolidDoorOpen } from "react-icons/bi";
 import Style from '../Style/Navbar.module.css';
 import { Link } from 'react-router-dom';
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken"); // Poista token
+    console.log("User logged out");
+    navigate("/kirjaudu"); // Ohjaa kirjautumissivulle
+  };
+
   return (
     <div>
       <nav
@@ -70,8 +76,12 @@ function Navbar() {
             >
               Rekisteroidy
             </Link>
- 
-            <button className={`btn ${Style.logoutBtn}`} type='button'>
+
+            <button
+              className={`btn ${Style.logoutBtn}`}
+              type="button"
+              onClick={handleLogout}
+            >
               Ulos <BiSolidDoorOpen />
             </button>
           </div>
@@ -81,4 +91,11 @@ function Navbar() {
   )
 }
 
+
+
+
+
 export default Navbar;
+
+
+

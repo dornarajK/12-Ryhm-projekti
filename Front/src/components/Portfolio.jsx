@@ -1,10 +1,12 @@
 import React from 'react'
 
+
 const Portfolio = () => {
   return (
     <div>
       <h1>Omat julkaisut</h1>
     </div>
+    
   )
 }
 
