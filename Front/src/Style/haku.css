@@ -1,0 +1,31 @@
+.haku {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #141429; /* Taustaväri koko hakukomponentille */
+	padding: 10px;
+	/* Pyöristetyt kulmat */
+	width: 100%;
+}
+
+/* Input-kentän tyyli */
+.haku input {
+	width: 500px;
+	padding: 8px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background-color: #141429; /* Inputin taustaväri */
+	color: white; /* Input-teksti valkoiseksi */
+}
+
+.haku input::placeholder {
+	color: #888; /* Paikkamerkkitekstin väri */
+}
+
+.haku input:focus {
+	border-color: #007bff;
+	outline: none;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

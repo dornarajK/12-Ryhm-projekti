@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AppContext } from './App_Context';
@@ -78,7 +77,7 @@ const App_State = ({ children }) => {
   };
 
   return (
-    <AppContext.Provider value={{ teeTuote, tuotteet, tuoteId }}>
+    <AppContext.Provider value={{tuotteet, teeTuote, setTuotteet, tuoteId }}>
       {children}
     </AppContext.Provider>
   );
