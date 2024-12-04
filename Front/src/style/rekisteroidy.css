@@ -1,0 +1,10 @@
+.rek {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background-color: #141429; /* Taustaväri */
+	color: white;
+	padding: 100px 0 100px 0;
+}
