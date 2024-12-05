@@ -1,11 +1,16 @@
 .imgediv {
+	padding-top: 20px;
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-content: flex-start;
 	align-items: center;
+	background-color: #141429;
+	color: white;
 }
 .imge {
-	width: 35%;
-	height: 70vh;
+	width: 85%;
+	height: 50vh;
 }
 .text {
 	text-align: center;
