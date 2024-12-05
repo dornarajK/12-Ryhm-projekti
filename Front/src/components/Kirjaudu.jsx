@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import img from '../img/concept14.png'
@@ -25,17 +25,17 @@ function Kirjaudu() {
 		return true
 	}
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!validateForm()) return;
-	 
+
 		try {
 			const result = await axios.post('http://localhost:3000/api/kirjaudu', {
 				sahkoposti,
 				salasana,
-<<<<<<< HEAD
 			});
-	 
+
 			if (result.data.code === 'Success') {
 				// Tallenna token localStorageen
 				localStorage.setItem('authToken', result.data.token); // Oletetaan, että token tulee tässä kentässä
