@@ -7,9 +7,13 @@ const route = express.Router();
 
 
 route.post('/teeTuote',authorizeUser,TeeTuote)
-route.get('/TuoteKayttajatID', authorizeUser, TuoteKayttajatID);
+// route.get('/TuoteKayttajatID', authorizeUser, TuoteKayttajatID);
+route.get('/portfolio/:id',TuoteKayttajatID);
 route.get('/', KaikkiTuote)
 route.get('/:id', LoydaTuoteId)
+
+
+
 
 
 
