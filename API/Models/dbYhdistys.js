@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 
 export const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://devrajkharal05:Fa0wHVoABeO7AUYV@cluster0.zhoea.mongodb.net/", {
+    await mongoose.connect("mongodb+srv://khaledmarai1:DWGrlpD7nEJvqooC@remarket.egouo.mongodb.net/", {
+      //    mongodb+srv://khaledmarai1:DWGrlpD7nEJvqooC@remarket.egouo.mongodb.net/
+
       dbName: "ReMarket"
     });
     console.log("MongoDB connected...!");
