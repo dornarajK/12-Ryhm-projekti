@@ -8,10 +8,11 @@ import Haku from './haku'
 
 const HomePage = () => {
     const { tuotteet } = useContext(AppContext)
+
     const [hakutermi, setHakutermi] = useState('')
 
     const suodatetutTuotteet = tuotteet?.filter(tuote =>
-        tuote.tuoteNimi.toLowerCase().includes(hakutermi.toLowerCase())
+        tuote.tuoteNimi.toLowerCase().startsWith(hakutermi.toLowerCase())
     )
 
 
