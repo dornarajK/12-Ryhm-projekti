@@ -1,4 +1,5 @@
 import { Kayttaja, validateKayttaja } from '../Models/kayttaja.js';
+import { Tuote } from '../Models/tuote.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 // Rekisteröidy
@@ -65,12 +66,11 @@ export const kirjaudu = async (req, res) => {
 };//kirjaudu loppu
 
 
-//käyttäjä portfolio
-export const portfolio = async (req, res) => {
-  if (!req.user) {
-    return res.status(404).json({ message: "Käyttäjää ei löytynyt." });
-  }
-  res.json({ kayttaja: req.user });
-  
 
-}//portfolio loppu
+
+export const portfolio = async (req, res) => {
+  // console.log(req.user)
+  res.json({ user: req.user })
+}
+
+  
