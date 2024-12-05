@@ -8,32 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const navigate = useNavigate();
-=======
-import React from 'react'
-import { BiSolidDoorOpen } from 'react-icons/bi'
-import Style from '../Style/Navbar.module.css'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
-function Navbar() {
-	const navigate = useNavigate();
-
-	const handleLogout = () => {
-		localStorage.removeItem("authToken"); // Poista token
-		console.log("User logged out");
-		navigate("/kirjaudu"); // Ohjaa kirjautumissivulle
-	};
-	return (
-		<div>
-			<nav
-				className='navbar navbar-expand-lg border-body'
-				style={{ backgroundColor: '#6c63ff' }}
-				data-bs-theme='dark'
-			>
-				<div className='container-fluid'>
-					<Link to='/' className={`navbar-brand  ${Style.tes}`}>
-						ReMarket
-					</Link>
->>>>>>> main
 
   const handleLogout = () => {
     localStorage.removeItem("authToken"); // Poista token
@@ -104,7 +78,6 @@ function Navbar() {
               Rekisteroidy
             </Link>
 
-<<<<<<< HEAD
             <button
               className={`btn ${Style.logoutBtn}`}
               type="button"
@@ -117,31 +90,6 @@ function Navbar() {
       </nav>
     </div>
   )
-=======
-						<Link to='/kirjaudu' className={`btn ${Style.loginBtn} me-2`}>
-							Kirjaudu Sisään
-						</Link>
-
-						<Link
-							to='/Rekisteroidy'
-							className={`btn ${Style.registerBtn} me-2`}
-						>
-							Rekisteroidy
-						</Link>
-
-						<button
-							className={`btn ${Style.logoutBtn}`}
-							type="button"
-							onClick={handleLogout}
-						>
-							Ulos <BiSolidDoorOpen />
-						</button>
-					</div>
-				</div>
-			</nav>	
-		</div>
-	)
->>>>>>> main
 }
 
 
