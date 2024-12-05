@@ -27,14 +27,6 @@ function Rekisteroidy() {
 		}
 	}
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     axios.post("http://localhost:3000/api/Rekisteroidy", { nimi, sahkoposti, salasana })
-    //     .then(result => {console.log(result)
-    // navigate("/kirjaudu")
-    //     })
-    //     .catch(err => console.log(err))
-    // }
 
 
 
