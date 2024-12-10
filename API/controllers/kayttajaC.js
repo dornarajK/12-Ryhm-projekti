@@ -8,7 +8,7 @@ export const Rekisteroidy = async (req, res) => {
 
   // Validointi tarkistus 
   const { error } = validateKayttaja(req.body);
-  if (error) {  
+  if (error) {
     return res.status(400).send(error.details[0].message);
   }
 
@@ -36,31 +36,37 @@ export const Rekisteroidy = async (req, res) => {
 // Kirjaudu sisään
 export const kirjaudu = async (req, res) => {
   const { sahkoposti, salasana } = req.body;
-
+  console.log(sahkoposti, salasana)
   try {
+  
     const kayttaja = await Kayttaja.findOne({ sahkoposti });
+    // console.log('kayttaja: ', kayttaja)
+
+    if (!kayttaja) {
+      return res.json({ status: 401, message: 'Väärä sähköposti tai salasana.' });
+    }
 
     const validPass = await bcrypt.compare(salasana, kayttaja.salasana);
-    
-    if (!kayttaja || !validPass) {
-      return res.status(401).json({ message: 'Väärä sähköposti tai salasana.' });
-    }
-    
+    // console.log('validPass: ', validPass)
+    // if (!kayttaja || !validPass) {
+    //   return res.status(401).json({ message: 'Väärä sähköposti tai salasana.' });
+    // }
+
     if (!validPass) {
-      return res.status(401).json({ message: 'salasana Virhe' });
+      return res.json({ status: 401, message: 'Väärä sähköposti tai salasana.'});
     }
     const token = jwt.sign({ kayttajaId: kayttaja._id }, process.env.JWT_SECRET || 'SecretKey', {
       expiresIn: "9d"
     });
 
-    
+
     res.cookie('authcookie', token, { maxAge: 900000, httpOnly: true });
 
     res.json({ code: 'Success', message: `Tervetuloa ${kayttaja.nimi}`, token })
 
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ message: 'Server Error', error: error.message });
+    // console.error('Login error:', error);
+    res.status(500);
   }
 
 };//kirjaudu loppu
@@ -73,4 +79,3 @@ export const portfolio = async (req, res) => {
   res.json({ user: req.user })
 }
 
-  

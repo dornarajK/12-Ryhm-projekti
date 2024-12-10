@@ -1,12 +1,14 @@
-//* yhdistämine mongoose 
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const { MONGODB_URI, DB_NAME } = process.env;
 
 export const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://khaledmarai1:DWGrlpD7nEJvqooC@remarket.egouo.mongodb.net/", {
-      //    mongodb+srv://khaledmarai1:DWGrlpD7nEJvqooC@remarket.egouo.mongodb.net/
-
-      dbName: "ReMarket"
+    await mongoose.connect(MONGODB_URI, {
+      dbName: DB_NAME,
     });
     console.log("MongoDB connected...!");
   } catch (err) {

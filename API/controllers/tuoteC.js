@@ -72,3 +72,20 @@ export const TuoteKayttajatID = async (req, res) => {
 };
 
 
+export const poista = async(req, res) =>{
+  const id =req.params.id;
+  
+  try {
+    const tuote = await Tuote.findByIdAndDelete(id);
+
+    if(!tuote){
+      return res.status(404).json({ message: 'Tute ei löytynyt'})
+    }
+    res.json({message: 'Tute poistamien onnistui'})
+    
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error:  virhe tuten poistamiesessa'})
+  }
+
+}
+

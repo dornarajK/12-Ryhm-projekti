@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import '../Style/rekisteroidy.css'
-
+import { Link } from 'react-router-dom';
 function Rekisteroidy() {
 	const [nimi, setNimi] = useState('')
 	const [sahkoposti, setSahkoposti] = useState('')

@@ -128,6 +128,19 @@ const App_State = ({ children }) => {
   };
 
 
+
+  const poista = async (id) => {
+    const api = await axios.delete(`${url}/poista/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
+    return api;
+  };
+
+
+
   return (
     <AppContext.Provider value={{
       tuoteId,
@@ -140,7 +153,8 @@ const App_State = ({ children }) => {
       user,
       setUser,
       userId,
-      setUserId
+      setUserId,
+      poista 
     }}>
       {children}
     </AppContext.Provider>
