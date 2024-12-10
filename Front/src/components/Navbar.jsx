@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BiSolidDoorOpen } from "react-icons/bi";
 import Style from '../Style/Navbar.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-
 function Navbar() {
   const navigate = useNavigate();
 
