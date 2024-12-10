@@ -26,6 +26,8 @@ function Kirjaudu() {
 	}
 
 
+
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!validateForm()) return;
@@ -35,17 +37,28 @@ function Kirjaudu() {
 				sahkoposti,
 				salasana,
 			});
-
+// console.log('stuts_',result)
 			if (result.data.code === 'Success') {
 				// Tallenna token localStorageen
-				localStorage.setItem('authToken', result.data.token); // Oletetaan, että token tulee tässä kentässä
+				localStorage.setItem('authToken', result.data.token);
+			 // Oletetaan, että token tulee tässä kentässä
 				navigate('/');
-			} else {
-				navigate('/Rekisteroidy');
-				alert('Et ole rekisteröitynyt tähän palveluun');
+				window.location.reload();
+			} else if(result.data.status==401){
+				setError(result.data.message)
+				// navigate('/Rekisteroidy');
+				
 			}
+			// navigate('/');
+			// window.location.reload();
 		} catch (err) {
-			console.error('Kirjautumisvirhe:', err);
+			// alert('Et ole rekisteröitynyt tähän palveluun');
+			// if {
+			// 	alert('Et ole rekisteröitynyt tähän palveluun');
+			// 	// navigate('/Rekisteroidy');
+			// }
+			// console.log('stuts_',err.response.status)
+			// console.error('Kirjautumisvirhe:', err);
 			setError('Jotain meni pieleen. Yritä uudelleen myöhemmin.');
 		}
 	};
