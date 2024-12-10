@@ -1,7 +1,7 @@
 import express from 'express';
 // import mongoose from 'mongoose';
 import cors from 'cors';
-// import path from 'path';
+import path from 'path';
 
 
 import cookieParser from 'cookie-parser';
@@ -9,6 +9,9 @@ import cookieParser from 'cookie-parser';
 import Kayttajaroute from './routes/kayttajaR.js';
 import Tuoteroute from './routes/tuoteR.js';
 import { connectDB,closeDB } from './Models/dbYhdistys.js';
+
+
+import { fileURLToPath } from 'url';
 
 const app = express();
 const port = 3000;
@@ -30,6 +33,19 @@ app.use(cors({
 
 app.use('/api', Kayttajaroute);
 app.use('/api', Tuoteroute)
+
+
+
+
+// Määrittele __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 connectDB().then(()=>{
