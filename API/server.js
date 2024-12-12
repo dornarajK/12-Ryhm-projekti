@@ -15,9 +15,9 @@ import { fileURLToPath } from 'url';
 
 const app = express();
 
-const port = process.env.PORT || 3000; // Azure asettaa PORT-muuttujan
-// const port = 3000;
-// const host = 'localhost';
+
+const port = 3000;
+const host = 'localhost';
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
@@ -50,26 +50,13 @@ app.get('*', (req, res) => {
 });
 
 
-// connectDB().then(()=>{
+connectDB().then(()=>{
 
-//   app.listen(port, host, () => console.log(`${host}:${port} kuuntelee...`));
+  app.listen(port, host, () => console.log(`${host}:${port} kuuntelee...`));
 
-// }).catch((err)=>{
-//   console.log("Failed to connect to MongoDB:", err.message)
-// })
-
-connectDB().then(() => {
-
-  app.listen(port, () => console.log(`Server is running on port ${port}`));
-
-}).catch((err) => {
-
-  console.log("Failed to connect to MongoDB:", err.message);
-
-});
-
-
-
+}).catch((err)=>{
+  console.log("Failed to connect to MongoDB:", err.message)
+})
 
 
 
